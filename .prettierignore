@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+coverage
+public
+.env
+*.min.js
+*.min.css
+tsconfig.json
+.vscode/settings.json
+package.json
