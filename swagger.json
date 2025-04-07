@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "API de Mascotas",
-    "description": "Documentación de la API para la gestión de mascotas",
-    "version": "1.0.0"
+    "title": "Ez Clips API",
+    "description": "API documentation for Ez Clips",
+    "version": "0.1.0"
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -23,10 +23,120 @@
     },
     "/info/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Info"
+        ],
+        "description": "Info route",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Info route",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Info route"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/info/health": {
+      "get": {
+        "tags": [
+          "Info"
+        ],
+        "description": "Health check route",
+        "responses": {
+          "200": {
+            "description": "Health check route",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Health check"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/info/version": {
+      "get": {
+        "tags": [
+          "Info"
+        ],
+        "description": "Version route",
+        "responses": {
+          "200": {
+            "description": "Version route",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "example": "1.0.0"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }

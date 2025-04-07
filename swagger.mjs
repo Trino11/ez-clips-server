@@ -2,8 +2,9 @@ import swaggerAutogen from 'swagger-autogen';
 
 const doc = {
   info: {
-    title: 'API de Mascotas',
-    description: 'Documentación de la API para la gestión de mascotas',
+    title: 'Ez Clips API',
+    description: 'API documentation for Ez Clips',
+    version: process.env.npm_package_version,
   },
   host: 'localhost:3000',
   schemes: ['http'],
