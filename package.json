@@ -5,8 +5,9 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
+    "build": "npm run swagger && tsc",
     "start": "node dist/index.js",
+    "swagger": "node ./swagger.mjs",
     "lint": "eslint . --fix",
     "format": "prettier --write ."
   },
@@ -34,13 +35,18 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/express-session": "^1.18.1",
+    "@types/swagger-ui-express": "^4.1.8",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
     "globals": "^16.0.0",
+    "install": "^0.13.0",
+    "npm": "^11.2.0",
     "prettier": "^3.5.3",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1",
     "ts-node-dev": "^2.0.0",
     "typescript-eslint": "^8.28.0"
   }

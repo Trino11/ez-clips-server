@@ -7,6 +7,9 @@ import http, { Server as HttpServer } from 'http';
 import colors from 'colors/safe';
 import routes from './routes/routes';
 
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../swagger.json';
+
 dotenv.config();
 
 class Server {
@@ -20,6 +23,7 @@ class Server {
 
     this.config();
     this.routes();
+    this.configSwagger();
   }
 
   private config(): void {
@@ -34,6 +38,17 @@ class Server {
         resave: false,
         saveUninitialized: true,
       }),
+    );
+  }
+
+  private configSwagger(): void {
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+    console.log(
+      colors.green(
+        `API documentation available at http://localhost:${this.app.get(
+          'port',
+        )}/api-docs`,
+      ),
     );
   }
 
