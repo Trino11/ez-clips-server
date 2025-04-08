@@ -1,14 +1,36 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Ez Clips API",
     "description": "API documentation for Ez Clips",
     "version": "0.1.0"
   },
-  "host": "localhost:3000",
-  "basePath": "/",
-  "schemes": [
-    "http"
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication routes"
+    },
+    {
+      "name": "Users",
+      "description": "User management routes"
+    },
+    {
+      "name": "Videos",
+      "description": "Clip management routes"
+    },
+    {
+      "name": "Categories",
+      "description": "Category management routes"
+    },
+    {
+      "name": "Comments",
+      "description": "Comment management routes"
+    }
   ],
   "paths": {
     "/": {
@@ -30,31 +52,67 @@
         "responses": {
           "200": {
             "description": "Info route",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Info route"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Info route"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
                 }
               },
-              "xml": {
-                "name": "main"
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Info route"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
               }
             }
           },
           "500": {
             "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Internal server error"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
                 }
               },
-              "xml": {
-                "name": "main"
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
               }
             }
           }
@@ -70,31 +128,67 @@
         "responses": {
           "200": {
             "description": "Health check route",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Health check"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Health check"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
                 }
               },
-              "xml": {
-                "name": "main"
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Health check"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
               }
             }
           },
           "500": {
             "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Internal server error"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
                 }
               },
-              "xml": {
-                "name": "main"
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
               }
             }
           }
@@ -110,34 +204,1113 @@
         "responses": {
           "200": {
             "description": "Version route",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "version": {
-                  "type": "string",
-                  "example": "1.0.0"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
                 }
               },
-              "xml": {
-                "name": "main"
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
               }
             }
           },
           "500": {
             "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Internal server error"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
                 }
               },
-              "xml": {
-                "name": "main"
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
               }
             }
           }
+        }
+      }
+    },
+    "/video/feed": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "description": "Video feed route",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authorization token, required for user specific routes",
+            "required": false,
+            "example": "Bearer <token>",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type of feed to get",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "feed",
+                "subscriptions",
+                "friends",
+                "recents",
+                "trending",
+                "top"
+              ]
+            },
+            "example": "feed"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of videos in the selected feed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideosList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized, a valid token is required for this type of feed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video/search": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "description": "Video search route",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term to find videos",
+            "required": true,
+            "example": "funny cats",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of videos matching the search term",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideosList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video/autocomplete": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "description": "Video autocomplete route",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term to autocomplete",
+            "required": true,
+            "example": "funn",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of autocomplete suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "example": [
+                    "funny cats",
+                    "funny cat videos"
+                  ],
+                  "items": {
+                    "type": "string"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "example": [
+                    "funny cats",
+                    "funny cat videos"
+                  ],
+                  "items": {
+                    "type": "string"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video/related/{videoId}": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "description": "Video related route",
+        "parameters": [
+          {
+            "name": "videoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the video to get related videos for",
+            "example": "1234567890"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authorization token, required for not public videos",
+            "required": false,
+            "example": "Bearer <token>",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of related videos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideosList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized, a valid token is required for not public videos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden, the video is not public and no token was provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found, the video was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not found"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not found"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video/watch/{videoId}": {
+      "get": {
+        "tags": [
+          "Videos"
+        ],
+        "description": "Video download route",
+        "parameters": [
+          {
+            "name": "videoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the video to watch",
+            "example": "1234567890"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authorization token, required for not public videos",
+            "required": false,
+            "example": "Bearer <token>",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "range",
+            "in": "header",
+            "description": "Range of bytes to download, for partial video download",
+            "required": false,
+            "example": "bytes=0-100",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Video file download",
+            "content": {
+              "video/mp4": {
+                "schema": {
+                  "type": "file",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "Partial video file download",
+            "content": {
+              "video/mp4": {
+                "schema": {
+                  "type": "file",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized, a valid token is required for not public videos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden, the video is not public and no token was provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found, the video was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not found"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not found"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Video": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1234-5678-9012"
+          },
+          "title": {
+            "type": "string",
+            "example": "My Awesome Video"
+          },
+          "description": {
+            "type": "string",
+            "example": "This is a description of my awesome video."
+          },
+          "url": {
+            "type": "string",
+            "example": "https://example.com/videos/1234-5678-9012"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://example.com/thumbnails/1234-5678-9012.jpg"
+          },
+          "visibility": {
+            "type": "string",
+            "example": "public"
+          },
+          "isHiddenFromSearch": {
+            "type": "boolean",
+            "example": false
+          },
+          "isHiddenFromProfile": {
+            "type": "boolean",
+            "example": false
+          },
+          "viewsCount": {
+            "type": "number",
+            "example": 10234
+          },
+          "rating": {
+            "type": "number",
+            "example": 4.5
+          },
+          "ratingCount": {
+            "type": "number",
+            "example": 120
+          },
+          "duration": {
+            "type": "string",
+            "example": "10:34"
+          },
+          "author": {
+            "xml": {
+              "name": "user"
+            },
+            "$ref": "#/components/schemas/User"
+          },
+          "participants": {
+            "xml": {
+              "name": "userslist"
+            },
+            "$ref": "#/components/schemas/UsersList"
+          },
+          "extras": {
+            "xml": {
+              "name": "userslist"
+            },
+            "$ref": "#/components/schemas/UsersList"
+          },
+          "date": {
+            "type": "string",
+            "example": "2025-04-08T12:00:00Z"
+          },
+          "tags": {
+            "type": "array",
+            "example": [
+              "tutorial",
+              "programming",
+              "javascript"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "category": {
+            "type": "string",
+            "example": "Education"
+          },
+          "hotSpots": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "time": {
+                  "type": "string",
+                  "example": "05:00"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Key concept explanation"
+                }
+              }
+            }
+          },
+          "commentsCount": {
+            "type": "number",
+            "example": 45
+          }
+        },
+        "xml": {
+          "name": "Video"
+        }
+      },
+      "VideosList": {
+        "type": "array",
+        "items": {
+          "xml": {
+            "name": "video"
+          },
+          "$ref": "#/components/schemas/Video"
+        },
+        "xml": {
+          "name": "VideosList"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "5678-1234-9012"
+          },
+          "alias": {
+            "type": "string",
+            "example": "user123"
+          },
+          "discordAlias": {
+            "type": "string",
+            "example": "discordUser123"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "2000-01-01"
+          },
+          "rolesIds": {
+            "type": "array",
+            "example": [
+              "admin",
+              "user"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "roles": {
+            "xml": {
+              "name": "roleslist"
+            },
+            "$ref": "#/components/schemas/RolesList"
+          },
+          "isFriend": {
+            "type": "boolean",
+            "example": true
+          },
+          "isBlocked": {
+            "type": "boolean",
+            "example": false
+          },
+          "isFollowing": {
+            "type": "boolean",
+            "example": true
+          },
+          "isFollower": {
+            "type": "boolean",
+            "example": false
+          },
+          "isOnline": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "UsersList": {
+        "type": "array",
+        "items": {
+          "xml": {
+            "name": "user"
+          },
+          "$ref": "#/components/schemas/User"
+        },
+        "xml": {
+          "name": "UsersList"
+        }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "admin"
+          },
+          "name": {
+            "type": "string",
+            "example": "Administrator"
+          },
+          "description": {
+            "type": "string",
+            "example": "Has full access to all features and settings."
+          },
+          "powerLevel": {
+            "type": "number",
+            "example": 100
+          }
+        },
+        "xml": {
+          "name": "Role"
+        }
+      },
+      "RolesList": {
+        "type": "array",
+        "items": {
+          "xml": {
+            "name": "role"
+          },
+          "$ref": "#/components/schemas/Role"
+        },
+        "xml": {
+          "name": "RolesList"
         }
       }
     }

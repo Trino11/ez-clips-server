@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import infoController from '../info/infoController';
+import videoController from '../video/videoController';
 
 const routes = Router();
 
@@ -8,5 +9,6 @@ routes.get('/', (req, res) => {
 });
 
 routes.use('/info', infoController);
+routes.use('/video', videoController);
 
 export default routes;
