@@ -30,6 +30,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/trino11/ez-clips-server:${{ github.ref_name }}
           cache-from: type=registry,ref=ghcr.io/trino11/ez-clips-server:develop
