@@ -31,7 +31,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/ez-clips-server:${{ github.ref_name }}
-            # ghcr.io/${{ github.repository_owner }}/ez-clips-server:latest
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/ez-clips-server:develop
+            ghcr.io/trino11/ez-clips-server:${{ github.ref_name }}
+            # ghcr.io/trino11/ez-clips-server:latest
+          cache-from: type=registry,ref=ghcr.io/trino11/ez-clips-server:develop
           cache-to: type=inline
