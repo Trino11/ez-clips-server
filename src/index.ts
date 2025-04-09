@@ -27,6 +27,12 @@ class Server {
   }
 
   private config(): void {
+    this.app.set(
+      'public_url',
+      (
+        process.env.PUBLIC_URL || `http://localhost:${process.env.PORT}`
+      ).replace(/\/$/, ''),
+    );
     this.app.set('port', process.env.PORT || 3000);
 
     this.app.use(cors());
@@ -42,13 +48,15 @@ class Server {
   }
 
   private configSwagger(): void {
+    // Replace the PUBLIC_URL in the Swagger document
+    const publicUrl = `${this.app.get('public_url')}`;
+    swaggerDoc.servers[0].url = publicUrl;
+
+    // Serve Swagger UI
     this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
     console.log(
-      colors.green(
-        `API documentation available at http://localhost:${this.app.get(
-          'port',
-        )}/api-docs`,
-      ),
+      colors.green(`API documentation available at ${publicUrl}/api-docs`),
     );
   }
 

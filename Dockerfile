@@ -13,8 +13,9 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Set the environment variable for the port
+# Set the environment variables
 ENV PORT=3000
+ENV PUBLIC_URL="http://localhost:3000"
 
 # Expose the port the app runs on
 EXPOSE $PORT
