@@ -43,6 +43,110 @@
         }
       }
     },
+    "/auth/discord": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Discord authentication route, redirects to Discord OAuth2",
+        "responses": {
+          "302": {
+            "description": "Redirects to Discord OAuth2"
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/discord/callback": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Discord authentication callback route, exchanges discord login code for token and retrieves user data",
+        "parameters": [
+          {
+            "name": "code",
+            "description": "Discord login code, gotten from /auth/discord",
+            "required": true,
+            "in": "query",
+            "example": "1234567890abcdef",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "206": {
+            "description": "Redirects to frontend with JWT token"
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/info/": {
       "get": {
         "tags": [
