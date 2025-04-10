@@ -9,3 +9,4 @@ public
 tsconfig.json
 .vscode/settings.json
 package.json
+swagger.json

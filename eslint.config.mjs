@@ -21,4 +21,7 @@ export default defineConfig([
     },
   },
   tseslint.configs.recommended,
+  {
+    ignores: ['dist/**'], // Ignore the dist folder
+  },
 ]);
