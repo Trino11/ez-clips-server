@@ -34,9 +34,7 @@ class Server {
     );
     this.app.set('port', process.env.PORT || 3000);
 
-    this.app.use(
-      cors({ origin: this.app.get('frontend_url'), credentials: true }),
-    );
+    this.app.use(cors({ origin: '*', credentials: true }));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(
