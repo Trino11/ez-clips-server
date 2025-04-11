@@ -29,13 +29,11 @@ class Server {
   private config(): void {
     this.app.set(
       'public_url',
-      (
-        process.env.PUBLIC_URL || `http://localhost:${process.env.PORT}`
-      ).replace(/\/$/, ''),
+      process.env.PUBLIC_URL || `http://localhost:${process.env.PORT}`,
     );
     this.app.set('port', process.env.PORT || 3000);
 
-    this.app.use(cors());
+    this.app.use(cors({ origin: '*', credentials: true }));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(
