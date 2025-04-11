@@ -27,7 +27,6 @@ class Server {
   }
 
   private config(): void {
-    this.app.set('frontend_url', process.env.FRONTEND_URL || '');
     this.app.set(
       'public_url',
       process.env.PUBLIC_URL || `http://localhost:${process.env.PORT}`,
