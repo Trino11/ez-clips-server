@@ -128,7 +128,6 @@ router.get('/discord/callback', async (req, res) => {
     redirect_uri,
     scope: 'identify',
   });
-  console.log('params', params);
 
   const tokenResponse = await fetch(tokenURL, {
     method: 'POST',
