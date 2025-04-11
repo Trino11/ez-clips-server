@@ -49,9 +49,64 @@
           "Auth"
         ],
         "description": "Discord authentication route, redirects to Discord OAuth2",
+        "parameters": [
+          {
+            "name": "redirect_uri",
+            "description": "Backend redirect URI, must match the one used in Discord app settings",
+            "required": true,
+            "in": "query",
+            "example": "http://localhost:3000/auth/discord/callback",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "return_to",
+            "description": "Frontend redirect URI, where the user will be redirected after authentication",
+            "required": false,
+            "in": "query",
+            "example": "http://localhost:1420/login/callback",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "302": {
             "description": "Redirects to Discord OAuth2"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Redirect URI is required"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Redirect URI is required"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal server error",
@@ -105,11 +160,99 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "state",
+            "description": "Encoded state parameter, contains redirect_uri and return_to, at least redirect_uri is required",
+            "required": true,
+            "in": "query",
+            "example": "%7B%22redirect_uri%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fdiscord%2Fcallback%22%2C%22return_to%22%3A%22http%3A%2F%2Flocalhost%3A1420%2Flogin%2Fcallback%22%7D",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "206": {
-            "description": "Redirects to frontend with JWT token"
+          "200": {
+            "description": "JWT token for the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jwt": {
+                      "type": "string",
+                      "example": "xxxxxxxxxx"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jwt": {
+                      "type": "string",
+                      "example": "xxxxxxxxxx"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirects to the frontend with JWT token"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Code is required"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Code is required"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Redirect URI is required"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
             "description": "Internal server error",

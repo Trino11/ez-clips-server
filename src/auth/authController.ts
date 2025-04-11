@@ -7,8 +7,28 @@ const router = Router();
 router.get('/discord', (req, res) => {
   // #swagger.tags = ['Auth']
   // #swagger.description = 'Discord authentication route, redirects to Discord OAuth2'
+  /* #swagger.parameters['redirect_uri'] = {
+    description: 'Backend redirect URI, must match the one used in Discord app settings',
+    required: true,
+    type: 'string',
+    in: 'query',
+    example: 'http://localhost:3000/auth/discord/callback',
+  }
+  #swagger.parameters['return_to'] = {
+    description: 'Frontend redirect URI, where the user will be redirected after authentication',
+    required: false,
+    type: 'string',
+    in: 'query',
+    example: 'http://localhost:1420/login/callback',
+  } */
   /* #swagger.responses[302] = {
     description: 'Redirects to Discord OAuth2',
+  }
+  #swagger.responses[400] = {
+    description: 'Bad request',
+    schema: {
+      message: 'Redirect URI is required'
+    }
   }
   #swagger.responses[500] = {
     description: 'Internal server error',
@@ -18,11 +38,20 @@ router.get('/discord', (req, res) => {
   } */
 
   const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-  const REDIRECT_URI = `${process.env.PUBLIC_URL}/auth/discord/callback`;
 
-  const discordURL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
-    REDIRECT_URI ?? '',
-  )}&response_type=code&scope=identify`;
+  const { redirect_uri, return_to } = req.query;
+
+  if (!redirect_uri) {
+    res.status(400).send('Redirect URI is required');
+    return;
+  }
+  const payload = {
+    redirect_uri: redirect_uri,
+    return_to: return_to,
+  };
+  const state = encodeURIComponent(JSON.stringify(payload));
+
+  const discordURL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirect_uri ?? ''}&state=${state}&response_type=code&scope=identify`;
 
   res.redirect(discordURL);
 });
@@ -36,10 +65,35 @@ router.get('/discord/callback', async (req, res) => {
     type: 'string',
     in: 'query',
     example: '1234567890abcdef',
+  }
+  #swagger.parameters['state'] = {
+    description: 'Encoded state parameter, contains redirect_uri and return_to, at least redirect_uri is required',
+    required: true,
+    type: 'string',
+    in: 'query',
+    example: '%7B%22redirect_uri%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fdiscord%2Fcallback%22%2C%22return_to%22%3A%22http%3A%2F%2Flocalhost%3A1420%2Flogin%2Fcallback%22%7D',
   } */
 
-  /* #swagger.responses[206] = {
-    description: 'Redirects to frontend with JWT token',
+  /* #swagger.responses[200] = {
+    description: 'JWT token for the user',
+    schema: {
+      jwt: 'xxxxxxxxxx',
+    }
+  }
+  #swagger.responses[302] = {
+    description: 'Redirects to the frontend with JWT token',
+  }
+  #swagger.responses[400] = {
+    description: 'Bad request',
+    schema: {
+      message: 'Code is required'
+    }
+  }
+  #swagger.responses[400] = {
+    description: 'Bad request',
+    schema: {
+      message: 'Redirect URI is required'
+    }
   }
   #swagger.responses[500] = {
     description: 'Internal server error',
@@ -48,11 +102,22 @@ router.get('/discord/callback', async (req, res) => {
     }
   } */
 
+  if (!req.query.state) {
+    res.status(400).send('State is required');
+    return;
+  }
+
   const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-  const REDIRECT_URI = `${process.env.PUBLIC_URL}/auth/discord/callback`;
   const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
 
   const { code } = req.query;
+  const { redirect_uri, return_to } = JSON.parse(
+    decodeURIComponent(req.query.state as string),
+  );
+  if (!code) {
+    res.status(400).send('Code is required');
+    return;
+  }
 
   const tokenURL = 'https://discord.com/api/oauth2/token';
   const params = new URLSearchParams({
@@ -60,9 +125,10 @@ router.get('/discord/callback', async (req, res) => {
     client_secret: CLIENT_SECRET ?? '',
     grant_type: 'authorization_code',
     code: code as string,
-    redirect_uri: REDIRECT_URI ?? '',
+    redirect_uri,
     scope: 'identify',
   });
+  console.log('params', params);
 
   const tokenResponse = await fetch(tokenURL, {
     method: 'POST',
@@ -98,10 +164,15 @@ router.get('/discord/callback', async (req, res) => {
   });
   const encodedUserData = encodeURIComponent(token);
 
-  const redirectURL = `${process.env.FRONTEND_URL}/auth?jwt=${encodedUserData}`;
-
-  // Redirect to the frontend with the JWT token
-  res.redirect(redirectURL);
+  if (return_to) {
+    const redirectUrl = new URL(return_to);
+    redirectUrl.searchParams.set('jwt', encodedUserData);
+    res.redirect(redirectUrl.toString());
+  } else {
+    res.status(200).json({
+      jwt: token,
+    });
+  }
 });
 
 export default router;
