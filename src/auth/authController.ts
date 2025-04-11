@@ -86,13 +86,10 @@ router.get('/discord/callback', async (req, res) => {
   #swagger.responses[400] = {
     description: 'Bad request',
     schema: {
-      message: 'Code is required'
-    }
-  }
-  #swagger.responses[400] = {
-    description: 'Bad request',
-    schema: {
-      message: 'Redirect URI is required'
+      message: {
+        type: 'string',
+        enum: ['Code is required', 'Redirect URI is required'],
+      }
     }
   }
   #swagger.responses[500] = {
