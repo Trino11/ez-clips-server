@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "npm run swagger && tsc",
-    "start": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "ts-node src/index.ts",
     "swagger": "node ./swagger.mjs",
     "lint": "eslint . --fix",
     "format": "prettier --write ."
